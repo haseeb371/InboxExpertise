@@ -2,6 +2,7 @@ import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
 import ClientShowcase from "@/components/ClientShowcase";
 import FeaturesSection from "@/components/FeaturesSection";
+import DeliverabilitySection from "@/components/DeliverabilitySection";
 
 const Index = () => {
   return (
@@ -10,6 +11,7 @@ const Index = () => {
       <HeroSection />
       <ClientShowcase />
       <FeaturesSection />
+      <DeliverabilitySection />
     </div>
   );
 };

@@ -203,8 +203,11 @@ const PricingSection = () => {
                       step={tier.name === "MS Business" ? 1 : 10}
                       className="w-full"
                     />
-                    <div className="flex justify-between text-xs text-muted-foreground mt-2">
+                    <div className="flex justify-between text-xs text-muted-foreground mt-3">
                       <span>{tier.minUsers}</span>
+                      <span>{tier.minUsers + Math.floor((tier.maxUsers - tier.minUsers) / 4)}</span>
+                      <span>{tier.minUsers + Math.floor((tier.maxUsers - tier.minUsers) / 2)}</span>
+                      <span>{tier.minUsers + Math.floor((tier.maxUsers - tier.minUsers) * 3 / 4)}</span>
                       <span>{tier.maxUsers}</span>
                     </div>
                   </div>

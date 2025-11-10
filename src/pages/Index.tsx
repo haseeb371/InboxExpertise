@@ -5,6 +5,9 @@ import FeaturesSection from "@/components/FeaturesSection";
 import DeliverabilitySection from "@/components/DeliverabilitySection";
 import DeliverabilityReversedSection from "@/components/DeliverabilityReversedSection";
 import PricingSection from "@/components/PricingSection";
+import TestimonialsSection from "@/components/TestimonialsSection";
+import FAQSection from "@/components/FAQSection";
+import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
@@ -16,6 +19,9 @@ const Index = () => {
       <DeliverabilitySection />
       <DeliverabilityReversedSection />
       <PricingSection />
+      <TestimonialsSection />
+      <FAQSection />
+      <Footer />
     </div>
   );
 };

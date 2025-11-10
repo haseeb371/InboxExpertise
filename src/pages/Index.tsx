@@ -4,6 +4,7 @@ import ClientShowcase from "@/components/ClientShowcase";
 import FeaturesSection from "@/components/FeaturesSection";
 import DeliverabilitySection from "@/components/DeliverabilitySection";
 import DeliverabilityReversedSection from "@/components/DeliverabilityReversedSection";
+import PricingSection from "@/components/PricingSection";
 
 const Index = () => {
   return (
@@ -14,6 +15,7 @@ const Index = () => {
       <FeaturesSection />
       <DeliverabilitySection />
       <DeliverabilityReversedSection />
+      <PricingSection />
     </div>
   );
 };

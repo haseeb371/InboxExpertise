@@ -1,4 +1,3 @@
-import { Monitor, Mail, Settings, CheckCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -6,13 +5,12 @@ const FeaturesSection = () => {
   const features = [
     {
       icon: (
-        <div className="w-20 h-20 mx-auto mb-5 relative">
-          <svg viewBox="0 0 48 48" className="w-full h-full">
-            <path fill="#4285F4" d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z"/>
-            <path fill="#34A853" d="M6.3 14.7l7.4 5.4C15.1 16.7 19.2 14 24 14c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 7.1 29.6 5 24 5c-7.7 0-14.5 4.4-17.7 10.7z"/>
-            <path fill="#FBBC05" d="M24 44c5.2 0 9.9-1.7 13.7-4.6l-6.9-5.8c-2 1.3-4.5 2.1-6.8 2.1-5.8 0-10.7-3.9-12.5-9.2l-7.3 5.7C7.5 39.1 15.1 44 24 44z"/>
-            <path fill="#EA4335" d="M46.2 20H24v9h12.6c-1.2 3.2-3.5 5.8-6.5 7.5l6.9 5.8c5-4.6 7.5-11.4 7.5-18.8 0-1.4-.1-2.8-.3-4.5z"/>
-          </svg>
+        <div className="w-20 h-20 mx-auto mb-5 relative flex items-center justify-center">
+          <img
+            src="/google-logo.png"
+            alt="Google"
+            className="w-16 h-16 object-contain"
+          />
         </div>
       ),
       title: "Google Workspace",
@@ -32,8 +30,12 @@ const FeaturesSection = () => {
     },
     {
       icon: (
-        <div className="w-20 h-20 mx-auto mb-5">
-          <Monitor className="w-full h-full text-primary" strokeWidth={1.5} />
+        <div className="w-20 h-20 mx-auto mb-5 flex items-center justify-center">
+          <img
+            src="/technical-setup-icon.svg"
+            alt="Technical Setup"
+            className="w-20 h-20 object-contain"
+          />
         </div>
       ),
       title: "Technical Setup",
@@ -41,8 +43,12 @@ const FeaturesSection = () => {
     },
     {
       icon: (
-        <div className="w-20 h-20 mx-auto mb-5 rounded-full bg-primary/10 flex items-center justify-center">
-          <Mail className="w-10 h-10 text-primary" strokeWidth={1.5} />
+        <div className="w-20 h-20 mx-auto mb-5 flex items-center justify-center">
+          <img
+            src="/email-infrastructure-icon.svg"
+            alt="Cold Email Infrastructure"
+            className="w-20 h-20 object-contain"
+          />
         </div>
       ),
       title: "Cold Email Infrastructure",
@@ -50,9 +56,12 @@ const FeaturesSection = () => {
     },
     {
       icon: (
-        <div className="w-20 h-20 mx-auto mb-5 rounded-full border-4 border-primary/20 flex items-center justify-center relative">
-          <Settings className="w-10 h-10 text-primary" strokeWidth={1.5} />
-          <span className="absolute -top-2 -right-2 bg-primary text-primary-foreground text-xs font-bold px-2 py-1 rounded-full">24/7</span>
+        <div className="w-20 h-20 mx-auto mb-5 flex items-center justify-center">
+          <img
+            src="/account-management-icon.svg"
+            alt="Account Management"
+            className="w-20 h-20 object-contain"
+          />
         </div>
       ),
       title: "Account Management",
@@ -60,8 +69,12 @@ const FeaturesSection = () => {
     },
     {
       icon: (
-        <div className="w-20 h-20 mx-auto mb-5 rounded-full bg-primary/10 flex items-center justify-center">
-          <CheckCircle className="w-10 h-10 text-primary" strokeWidth={1.5} />
+        <div className="w-20 h-20 mx-auto mb-5 flex items-center justify-center">
+          <img
+            src="/secure-icon.svg"
+            alt="Comprehensive and Secure"
+            className="w-20 h-20 object-contain"
+          />
         </div>
       ),
       title: "Comprehensive and Secure",
@@ -74,32 +87,33 @@ const FeaturesSection = () => {
       <div className="container mx-auto px-6 lg:px-16">
         {/* Header */}
         <div className="text-center mb-16 max-w-4xl mx-auto">
-          <Badge className="mb-6 bg-primary/10 text-primary hover:bg-primary/10 px-5 py-2 text-sm font-medium rounded-full">
+          <Badge className="mb-6 bg-primary/10 text-primary hover:bg-primary/10 px-5 py-2 text-base font-semibold rounded-full flex items-center gap-2 w-fit mx-auto">
+            <span className="w-2 h-2 bg-primary rounded-full"></span>
             Features
           </Badge>
-          
-          <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-6 leading-tight">
+
+          <h2 className="text-4xl lg:text-5xl font-bold text-black mb-6 leading-tight">
             The Future of Reliable Email Communication
           </h2>
-          
+
           <p className="text-base lg:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-            Trust us to deliver cutting-edge innovation, transparency and personalized services, all designed to help you achieve financial freedom
+            Trust us to deliver cutting-edge innovation, transparency and personalized services designed to maximize your email deliverability
           </p>
         </div>
 
         {/* Features Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {features.map((feature, index) => (
-            <Card 
+            <Card
               key={index}
-              className="border border-border hover:shadow-lg transition-all duration-300 hover:-translate-y-1 bg-card"
+              className="border border-border transition-all duration-300 hover:-translate-y-1 bg-card"
             >
               <CardContent className="p-10 text-center">
                 {feature.icon}
-                <h3 className="text-xl font-semibold text-foreground mb-4">
+                <h3 className="text-xl font-bold text-black mb-4">
                   {feature.title}
                 </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
+                <p className="text-sm lg:text-base text-muted-foreground leading-relaxed">
                   {feature.description}
                 </p>
               </CardContent>

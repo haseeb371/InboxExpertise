@@ -9,30 +9,30 @@ All colors MUST be HSL.
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 206 50% 22%;
+    --foreground: 192 86% 17%;
 
     --card: 0 0% 100%;
-    --card-foreground: 206 50% 22%;
+    --card-foreground: 192 86% 17%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 206 50% 22%;
+    --popover-foreground: 192 86% 17%;
 
-    /* Primary - Main Teal */
-    --primary: 178 40% 54%;
+    /* Primary - Main Teal #2C8E9C - hsla(187, 56%, 39%, 1) */
+    --primary: 187 56% 39%;
     --primary-foreground: 0 0% 100%;
-    
+
     /* Primary Light - Lighter Teal */
-    --primary-light: 184 44% 63%;
+    --primary-light: 187 56% 50%;
     
-    /* Navy - Dark Navy */
-    --navy: 206 50% 22%;
+    /* Navy - Dark Navy #06404F - hsla(192, 86%, 17%, 1) */
+    --navy: 192 86% 17%;
     --navy-foreground: 0 0% 100%;
     
     /* Teal Text - Medium Teal */
     --teal-text: 196 42% 30%;
 
     --secondary: 210 40% 96.1%;
-    --secondary-foreground: 206 50% 22%;
+    --secondary-foreground: 192 86% 17%;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 220 9% 46%;
@@ -49,12 +49,12 @@ All colors MUST be HSL.
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 178 40% 54%;
+    --ring: 187 56% 39%;
 
     --radius: 1rem;
     
     /* Custom gradients and effects */
-    --gradient-hero: linear-gradient(180deg, hsl(184 44% 63%) 0%, hsl(178 40% 54%) 100%);
+    --gradient-hero: linear-gradient(180deg, hsl(187 56% 50%) 0%, hsl(187 56% 39%) 100%);
     --shadow-card: 0 12px 40px rgba(0, 0, 0, 0.12);
     --shadow-card-lg: 0 24px 64px rgba(0, 0, 0, 0.25);
 
@@ -75,9 +75,9 @@ All colors MUST be HSL.
     --card-foreground: 0 0% 100%;
     --popover: 206 50% 22%;
     --popover-foreground: 0 0% 100%;
-    --primary: 178 40% 54%;
+    --primary: 187 56% 39%;
     --primary-foreground: 0 0% 100%;
-    --primary-light: 184 44% 63%;
+    --primary-light: 187 56% 50%;
     --navy: 0 0% 100%;
     --navy-foreground: 206 50% 22%;
     --teal-text: 184 44% 63%;
@@ -93,7 +93,7 @@ All colors MUST be HSL.
     --destructive-foreground: 0 0% 100%;
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 178 40% 54%;
+    --ring: 187 56% 39%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;

@@ -3,66 +3,83 @@ import { Badge } from "@/components/ui/badge";
 import TrustedUsersCard from "./TrustedUsersCard";
 import DeliverabilityChart from "./DeliverabilityChart";
 import HealthScoreCard from "./HealthScoreCard";
+import { InteractiveGridPattern } from "@/components/ui/interactive-grid-pattern";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen bg-gradient-to-b from-primary-light to-primary overflow-hidden pt-20">
-      <div className="container mx-auto px-6 lg:px-16 py-20">
+    <section className="relative h-screen bg-gradient-to-b from-primary-light to-primary overflow-hidden flex items-center">
+      {/* Interactive Grid Background */}
+      <div className="absolute inset-0 w-full h-full">
+        <InteractiveGridPattern
+          width={50}
+          height={50}
+          className="opacity-30"
+          squaresClassName="fill-white/10 stroke-white/20 hover:fill-white/30"
+        />
+      </div>
+      <div className="container mx-auto px-6 lg:px-16 py-8 w-full relative z-10">
         {/* Badge */}
-        <div className="flex justify-center mb-12 animate-fade-in-up">
-          <div className="bg-white rounded-full px-5 py-2 shadow-md flex items-center gap-3">
-            <Badge className="bg-primary/10 text-primary hover:bg-primary/10 rounded-xl px-3 py-1 text-xs font-bold">
+        <div className="flex justify-center mb-8 animate-fade-in-up">
+          <div className="bg-white/10 backdrop-blur-xl rounded-full pl-2 pr-3 py-1.5 flex items-center gap-1.5">
+            <Badge className="bg-white text-navy hover:bg-white rounded-full px-2.5 py-0.5 text-xs font-semibold">
               New
             </Badge>
-            <span className="text-sm font-medium text-teal-text">Payment cards upgraded</span>
+            <span className="text-sm font-medium text-white">Email deliverability enhanced</span>
           </div>
         </div>
 
         {/* Main Content */}
-        <div className="max-w-5xl mx-auto text-center space-y-6 mb-16">
-          <h1 className="text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight tracking-tight animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
+        <div className="max-w-5xl mx-auto text-center space-y-4 mb-12">
+          <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight tracking-tight animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
             Ensure Your Email Hits
             <br />
             the Right Inbox
           </h1>
           
-          <p className="text-lg lg:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
+          <p className="text-base lg:text-lg text-white/90 max-w-xl mx-auto leading-relaxed animate-fade-in-up px-4" style={{ animationDelay: "0.2s" }}>
             We help you configure smart authentication, fix deliverability issues,
             and boost sender reputation for higher open and reply rates.
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-5 pt-6 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
-            <Button 
-              variant="hero"
+          <div className="flex flex-wrap items-center justify-center gap-4 pt-4 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
+            <Button
               size="lg"
-              className="rounded-full text-lg px-10 py-6"
+              className="rounded-full px-12 py-6 text-base font-semibold hover:scale-105 transition-all bg-primary text-primary-foreground hover:bg-primary/90"
             >
-              Create account
-            </Button>
-            <Button 
-              variant="hero-white"
-              size="lg"
-              className="rounded-full text-lg px-10 py-6"
-            >
-              Watch Tutorial
+              Get Started
             </Button>
           </div>
         </div>
 
-        {/* Visual Elements */}
-        <div className="relative h-[600px] max-w-7xl mx-auto">
-          {/* Trusted Users Card - Left */}
-          <div className="absolute left-0 lg:left-[5%] top-[15%] z-10 animate-float animate-fade-in-up hidden md:block" style={{ animationDelay: "0.5s" }}>
+        {/* Visual Elements - Desktop */}
+        <div className="hidden md:block relative h-[280px] w-full">
+          <div className="relative h-full w-full flex items-end justify-center overflow-visible">
+            {/* Trusted Users Card - Left */}
+            <div className="absolute left-[2%] lg:left-[8%] top-[60%] z-10 animate-float animate-fade-in-up" style={{ animationDelay: "0.5s" }}>
+              <TrustedUsersCard />
+            </div>
+
+            {/* Center - Deliverability Chart */}
+            <div className="z-20 animate-fade-in-up absolute top-0" style={{ animationDelay: "0.4s" }}>
+              <DeliverabilityChart />
+            </div>
+
+            {/* Health Score Card - Right */}
+            <div className="absolute right-0 top-[35%] z-10 animate-float hidden lg:block" style={{ animationDelay: "0.6s", animationDuration: "5s" }}>
+              <HealthScoreCard />
+            </div>
+          </div>
+        </div>
+
+        {/* Visual Elements - Mobile */}
+        <div className="md:hidden flex flex-col items-center gap-6 w-full max-w-sm mx-auto">
+          {/* Trusted Users Card */}
+          <div className="animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
             <TrustedUsersCard />
           </div>
 
-          {/* Center - Deliverability Chart */}
-          <div className="absolute left-1/2 -translate-x-1/2 top-0 z-20 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
-            <DeliverabilityChart />
-          </div>
-
-          {/* Health Score Card - Right */}
-          <div className="absolute right-0 lg:right-[5%] top-[20%] z-10 animate-float hidden lg:block" style={{ animationDelay: "0.6s", animationDuration: "5s" }}>
+          {/* Health Score Card */}
+          <div className="animate-fade-in-up" style={{ animationDelay: "0.5s" }}>
             <HealthScoreCard />
           </div>
         </div>

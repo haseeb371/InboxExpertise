@@ -1,19 +1,32 @@
 import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
+import { useState, useEffect } from "react";
 
 const Navigation = () => {
   const navItems = ["Home", "Services", "Pricing", "About Us", "Blogs", "Contact Us"];
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/10 backdrop-blur-md">
-      <div className="container mx-auto px-6 lg:px-16">
-        <div className="flex items-center justify-between h-20">
+    <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4">
+      <div className={`max-w-6xl w-full mx-6 transition-all duration-300 rounded-full ${
+        isScrolled ? "bg-white/20 backdrop-blur-xl" : "bg-white/20 backdrop-blur-xl"
+      }`}>
+        <div className="flex items-center justify-between h-16 px-6 lg:px-8">
           {/* Logo */}
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-              <Plus className="w-5 h-5 text-white" />
-            </div>
-            <span className="text-2xl font-semibold text-navy">Inboxexpertise</span>
+          <div className="flex items-center">
+            <img
+              src="/logo.png"
+              alt="Inboxexpertise Logo"
+              className="h-7 w-auto"
+            />
           </div>
 
           {/* Navigation Menu - Hidden on mobile */}
@@ -22,23 +35,17 @@ const Navigation = () => {
               <a
                 key={item}
                 href="#"
-                className="text-teal-text font-medium hover:text-navy transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:origin-left"
+                className="font-medium transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:origin-left text-navy hover:text-primary"
               >
                 {item}
               </a>
             ))}
           </div>
 
-          {/* Action Buttons */}
-          <div className="flex items-center gap-4">
-            <Button
-              variant="outline"
-              className="rounded-full border-primary text-primary hover:bg-primary/10 px-8"
-            >
-              Sign in
-            </Button>
-            <Button className="rounded-full px-8 hover:scale-105">
-              Register
+          {/* Action Button */}
+          <div className="flex items-center">
+            <Button className="rounded-full px-8 font-semibold hover:scale-105 transition-all bg-primary text-primary-foreground hover:bg-primary/90">
+              Get Started
             </Button>
           </div>
         </div>

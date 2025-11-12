@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Slider } from "@/components/ui/slider";
+import { InteractiveGridPattern } from "@/components/ui/interactive-grid-pattern";
 
 interface PricingTier {
   name: string;
@@ -25,16 +26,10 @@ const pricingTiers: PricingTier[] = [
     minUsers: 100,
     maxUsers: 500,
     features: [
-      "Google Basic",
-      "Domain",
-      "SPF",
-      "DKIM",
-      "DMARC",
-      "Email using (SPF, DKIM, DMARC etc)",
-      "Add More users",
+      "Domain & Email Setup",
+      "SPF, DKIM, DMARC",
       "US Sending Servers",
-      "100% secure as we have no access to your accounts",
-      "Enhanced Security"
+      "100% Secure Access"
     ]
   },
   {
@@ -45,16 +40,10 @@ const pricingTiers: PricingTier[] = [
     minUsers: 100,
     maxUsers: 500,
     features: [
-      "Google Basic",
-      "Domain",
-      "SPF",
-      "DKIM",
-      "DMARC",
-      "10.2 (per month per domain)",
-      "Email using (SPF, DKIM, DMARC etc)",
-      "Add More users",
+      "Domain & Email Setup",
+      "SPF, DKIM, DMARC",
       "US Sending Servers",
-      "100% secure as we have no access to your accounts",
+      "100% Secure Access",
       "Enhanced Security"
     ],
     highlighted: true
@@ -67,16 +56,10 @@ const pricingTiers: PricingTier[] = [
     minUsers: 1,
     maxUsers: 100,
     features: [
-      "Google Basic",
-      "Domain",
-      "SPF",
-      "DKIM",
-      "DMARC",
-      "Email using (SPF, DKIM, DMARC etc)",
-      "Add More users",
+      "Domain & Email Setup",
+      "SPF, DKIM, DMARC",
       "US Sending Servers",
-      "100% secure as we have no access to your accounts",
-      "Enhanced Security"
+      "100% Secure Access"
     ]
   }
 ];
@@ -100,32 +83,42 @@ const PricingSection = () => {
   };
 
   return (
-    <section className="py-20 bg-background">
-      <div className="container mx-auto px-6 lg:px-16 max-w-7xl">
+    <section className="relative py-20 bg-gradient-to-b from-primary-light to-primary overflow-hidden">
+      {/* Interactive Grid Background */}
+      <div className="absolute inset-0 w-full h-full">
+        <InteractiveGridPattern
+          width={50}
+          height={50}
+          className="opacity-30"
+          squaresClassName="fill-white/10 stroke-white/20 hover:fill-white/30"
+        />
+      </div>
+      <div className="container mx-auto px-6 lg:px-16 max-w-7xl relative z-10">
         {/* Header */}
         <div className="text-center mb-12">
-          <Badge className="bg-primary/10 text-primary hover:bg-primary/10 px-5 py-2 text-base font-semibold rounded-full mb-6">
+          <Badge className="bg-primary text-white hover:bg-primary px-5 py-2 text-base font-semibold rounded-full flex items-center gap-2 w-fit mx-auto mb-6">
+            <span className="w-2 h-2 bg-white rounded-full"></span>
             Pricing Plan
           </Badge>
-          
-          <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
+
+          <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
             Select a Best Plan For Your
             <br />
             Business Growth
           </h2>
-          
-          <p className="text-base text-muted-foreground max-w-2xl mx-auto mb-8">
+
+          <p className="text-base text-white/90 max-w-2xl mx-auto mb-8">
             Select from our range of high-quality Google workspace inboxes tailored to your needs
           </p>
 
           {/* Monthly/Yearly Toggle */}
-          <div className="inline-flex items-center gap-3 bg-muted rounded-full p-1">
+          <div className="inline-flex items-center gap-3 bg-white/20 backdrop-blur-sm rounded-full p-1">
             <button
               onClick={() => setBillingCycle("monthly")}
               className={`px-8 py-2 rounded-full text-sm font-semibold transition-all ${
                 billingCycle === "monthly"
-                  ? "bg-primary text-primary-foreground shadow-sm"
-                  : "text-muted-foreground hover:text-foreground"
+                  ? "bg-white text-primary shadow-sm"
+                  : "text-white hover:text-white/80"
               }`}
             >
               Monthly
@@ -134,8 +127,8 @@ const PricingSection = () => {
               onClick={() => setBillingCycle("yearly")}
               className={`px-8 py-2 rounded-full text-sm font-semibold transition-all ${
                 billingCycle === "yearly"
-                  ? "bg-primary text-primary-foreground shadow-sm"
-                  : "text-muted-foreground hover:text-foreground"
+                  ? "bg-white text-primary shadow-sm"
+                  : "text-white hover:text-white/80"
               }`}
             >
               Yearly
@@ -153,16 +146,16 @@ const PricingSection = () => {
             return (
               <Card
                 key={tier.name}
-                className={`relative overflow-hidden transition-all duration-300 hover:shadow-card ${
+                className={`relative overflow-hidden transition-all duration-300 ${
                   tier.highlighted
-                    ? "border-2 border-primary bg-primary/5 scale-105"
+                    ? "border-2 border-white bg-card scale-105"
                     : "border-border bg-card"
                 }`}
               >
                 <CardContent className="p-8">
                   {/* Plan Name & Description */}
                   <div className="mb-6">
-                    <h3 className="text-2xl font-bold text-foreground mb-2">
+                    <h3 className="text-2xl font-bold mb-2 text-black">
                       {tier.name}
                     </h3>
                     <p className="text-sm text-muted-foreground">
@@ -180,13 +173,13 @@ const PricingSection = () => {
                         /{billingCycle === "monthly" ? "month" : "year"}
                       </span>
                     </div>
-                    <p className="text-xs text-muted-foreground mt-1">
+                    <p className="text-xs mt-1 text-muted-foreground">
                       per user per {billingCycle === "monthly" ? "month" : "year"}
                     </p>
                   </div>
 
                   {/* User Count Slider */}
-                  <div className="mb-6 p-4 bg-muted/50 rounded-lg">
+                  <div className="mb-6 p-4 rounded-lg bg-muted/50">
                     <div className="flex justify-between items-center mb-3">
                       <span className="text-sm font-medium text-foreground">
                         {tier.name === "MS Business" ? "Domain" : "Users"}
@@ -201,9 +194,9 @@ const PricingSection = () => {
                       min={tier.minUsers}
                       max={tier.maxUsers}
                       step={tier.name === "MS Business" ? 1 : 10}
-                      className="w-full"
+                      className="w-full cursor-pointer"
                     />
-                    <div className="flex justify-between text-xs text-muted-foreground mt-3">
+                    <div className="flex justify-between text-xs mt-3 text-muted-foreground">
                       <span>{tier.minUsers}</span>
                       <span>{tier.minUsers + Math.floor((tier.maxUsers - tier.minUsers) / 4)}</span>
                       <span>{tier.minUsers + Math.floor((tier.maxUsers - tier.minUsers) / 2)}</span>
@@ -216,10 +209,10 @@ const PricingSection = () => {
                   <div className="space-y-3 mb-8">
                     {tier.features.map((feature, index) => (
                       <div key={index} className="flex items-start gap-3">
-                        <div className="flex-shrink-0 w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center mt-0.5">
+                        <div className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center mt-0.5 bg-primary/10">
                           <Check className="w-3 h-3 text-primary" />
                         </div>
-                        <span className="text-sm text-foreground leading-relaxed">
+                        <span className="text-sm leading-relaxed text-foreground">
                           {feature}
                         </span>
                       </div>
@@ -228,13 +221,9 @@ const PricingSection = () => {
 
                   {/* CTA Button */}
                   <Button
-                    className={`w-full rounded-lg py-6 font-semibold ${
-                      tier.highlighted
-                        ? "bg-primary text-primary-foreground hover:bg-primary/90"
-                        : "bg-primary/10 text-primary hover:bg-primary/20"
-                    }`}
+                    className="w-full rounded-lg py-6 font-semibold bg-primary text-primary-foreground hover:bg-primary/90"
                   >
-                    Buy Now
+                    Get Started
                   </Button>
                 </CardContent>
               </Card>

@@ -112,12 +112,22 @@ export default {
             transform: "translateY(0)",
           },
         },
+        "rotate-full": {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
+        "orbit-swing": {
+          "0%": { transform: "rotate(-10deg)" },
+          "50%": { transform: "rotate(200deg)" },
+          "100%": { transform: "rotate(-10deg)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "float": "float 4s ease-in-out infinite",
         "fade-in-up": "fade-in-up 0.8s ease-out forwards",
+        "orbit-swing": "orbit-swing 20s ease-in-out infinite",
       },
     },
   },

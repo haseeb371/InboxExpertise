@@ -1,6 +1,8 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Star } from "lucide-react";
+import React from "react";
+import { gsap } from "gsap";
 
 interface Testimonial {
   name: string;
@@ -63,65 +65,98 @@ const testimonials: Testimonial[] = [
 ];
 
 const TestimonialsSection = () => {
+  const containerRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    if (!containerRef.current) return;
+
+    const container = containerRef.current;
+
+    // Set initial position
+    gsap.set(container, { x: 0 });
+
+    // Create smooth infinite scrolling animation
+    const tl = gsap.timeline({ repeat: -1 });
+
+    tl.to(container, {
+      x: "-50%", // Move by 50% since we duplicate testimonials
+      duration: 30, // Slower animation for testimonials
+      ease: "none",
+    });
+
+    return () => {
+      tl.kill();
+    };
+  }, []);
+
   return (
-    <section className="py-20 bg-muted/30">
-      <div className="container mx-auto px-6 lg:px-16 max-w-7xl">
+    <section className="py-20 bg-white">
+      <div className="container mx-auto px-6 lg:px-16">
         {/* Header */}
         <div className="text-center mb-12">
-          <Badge className="bg-primary/10 text-primary hover:bg-primary/10 px-5 py-2 text-base font-semibold rounded-full mb-6">
+          <Badge className="bg-primary/10 text-primary hover:bg-primary/10 px-5 py-2 text-base font-semibold rounded-full flex items-center gap-2 w-fit mx-auto mb-6">
+            <span className="w-2 h-2 bg-primary rounded-full"></span>
             Testimonials
           </Badge>
-          
-          <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
+
+          <h2 className="text-4xl lg:text-5xl font-bold text-black mb-4">
             What Our Clients Say
           </h2>
-          
-          <p className="text-base text-muted-foreground max-w-2xl mx-auto">
+
+          <p className="text-base text-muted-foreground max-w-[470px] mx-auto">
             Hear from businesses that have transformed their email deliverability with our services
           </p>
         </div>
 
-        {/* Testimonials Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {testimonials.map((testimonial, index) => (
-            <Card key={index} className="bg-card border-border hover:shadow-card transition-shadow duration-300">
-              <CardContent className="p-6">
-                {/* Review Text */}
-                <div className="mb-6">
-                  {/* Star Rating */}
-                  <div className="flex gap-1 mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-primary text-primary" />
-                    ))}
-                  </div>
-                  
-                  <p className="text-sm text-foreground leading-relaxed">
-                    "{testimonial.review}"
-                  </p>
-                </div>
+        {/* Testimonials Carousel */}
+        <div className="w-full max-w-screen-xl mx-auto overflow-hidden relative">
+          {/* Left fade overlay */}
+          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+          {/* Right fade overlay */}
+          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
-                {/* Profile Section */}
-                <div className="flex items-center gap-3">
-                  {/* Avatar */}
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                    <span className="text-sm font-bold text-primary">
-                      {testimonial.avatar}
-                    </span>
-                  </div>
-                  
-                  {/* Name and Position */}
-                  <div>
-                    <h4 className="font-semibold text-foreground text-sm">
-                      {testimonial.name}
-                    </h4>
-                    <p className="text-xs text-muted-foreground">
-                      {testimonial.position} at {testimonial.company}
+          <div ref={containerRef} className="flex gap-6">
+            {/* Render testimonials twice for seamless loop */}
+            {[...testimonials, ...testimonials].map((testimonial, index) => (
+              <Card key={index} className="flex-shrink-0 w-96 bg-card border-border">
+                <CardContent className="p-6">
+                  {/* Review Text */}
+                  <div className="mb-6">
+                    {/* Star Rating */}
+                    <div className="flex gap-1 mb-4">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 fill-primary text-primary" />
+                      ))}
+                    </div>
+
+                    <p className="text-sm text-black leading-relaxed">
+                      "{testimonial.review}"
                     </p>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+
+                  {/* Profile Section */}
+                  <div className="flex items-center gap-3">
+                    {/* Avatar */}
+                    <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                      <span className="text-sm font-bold text-primary">
+                        {testimonial.avatar}
+                      </span>
+                    </div>
+
+                    {/* Name and Position */}
+                    <div>
+                      <h4 className="font-semibold text-foreground text-sm">
+                        {testimonial.name}
+                      </h4>
+                      <p className="text-xs text-muted-foreground">
+                        {testimonial.position} at {testimonial.company}
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
       </div>
     </section>

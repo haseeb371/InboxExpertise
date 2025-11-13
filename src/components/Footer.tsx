@@ -1,8 +1,29 @@
 import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 const Footer = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleScrollToSection = (sectionId: string) => {
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
+    } else {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  };
+
   return (
     <footer className="bg-navy text-navy-foreground">
       <div className="container mx-auto px-6 lg:px-16 py-16">
@@ -10,7 +31,9 @@ const Footer = () => {
           {/* Company Info */}
           <div>
             <div className="mb-6">
-              <img src="/logo.png" alt="Company Logo" className="h-10 mb-4" />
+              <Link to="/">
+                <img src="/logo.png" alt="Company Logo" className="h-10 mb-4 cursor-pointer" />
+              </Link>
               <p className="text-sm text-navy-foreground/80 leading-relaxed">
                 Providing premium email deliverability solutions to help businesses reach their audience effectively and reliably.
               </p>
@@ -54,29 +77,35 @@ const Footer = () => {
             <h3 className="font-bold text-lg mb-4">Quick Links</h3>
             <ul className="space-y-3">
               <li>
-                <a href="#" className="text-sm text-navy-foreground/80 hover:text-primary transition-colors">
+                <Link to="/about" className="text-sm text-navy-foreground/80 hover:text-primary transition-colors">
                   About Us
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-sm text-navy-foreground/80 hover:text-primary transition-colors">
+                <button
+                  onClick={() => handleScrollToSection('features')}
+                  className="text-sm text-navy-foreground/80 hover:text-primary transition-colors text-left"
+                >
                   Services
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#" className="text-sm text-navy-foreground/80 hover:text-primary transition-colors">
+                <button
+                  onClick={() => handleScrollToSection('pricing')}
+                  className="text-sm text-navy-foreground/80 hover:text-primary transition-colors text-left"
+                >
                   Pricing
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#" className="text-sm text-navy-foreground/80 hover:text-primary transition-colors">
+                <Link to="/blog" className="text-sm text-navy-foreground/80 hover:text-primary transition-colors">
                   Blog
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-sm text-navy-foreground/80 hover:text-primary transition-colors">
+                <Link to="/contact" className="text-sm text-navy-foreground/80 hover:text-primary transition-colors">
                   Contact
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -86,29 +115,44 @@ const Footer = () => {
             <h3 className="font-bold text-lg mb-4">Services</h3>
             <ul className="space-y-3">
               <li>
-                <a href="#" className="text-sm text-navy-foreground/80 hover:text-primary transition-colors">
+                <button
+                  onClick={() => handleScrollToSection('features')}
+                  className="text-sm text-navy-foreground/80 hover:text-primary transition-colors text-left"
+                >
                   Google Workspace
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#" className="text-sm text-navy-foreground/80 hover:text-primary transition-colors">
+                <button
+                  onClick={() => handleScrollToSection('features')}
+                  className="text-sm text-navy-foreground/80 hover:text-primary transition-colors text-left"
+                >
                   Microsoft 365
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#" className="text-sm text-navy-foreground/80 hover:text-primary transition-colors">
+                <button
+                  onClick={() => handleScrollToSection('features')}
+                  className="text-sm text-navy-foreground/80 hover:text-primary transition-colors text-left"
+                >
                   Technical Setup
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#" className="text-sm text-navy-foreground/80 hover:text-primary transition-colors">
+                <button
+                  onClick={() => handleScrollToSection('features')}
+                  className="text-sm text-navy-foreground/80 hover:text-primary transition-colors text-left"
+                >
                   Account Management
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#" className="text-sm text-navy-foreground/80 hover:text-primary transition-colors">
+                <button
+                  onClick={() => handleScrollToSection('features')}
+                  className="text-sm text-navy-foreground/80 hover:text-primary transition-colors text-left"
+                >
                   Deliverability Consulting
-                </a>
+                </button>
               </li>
             </ul>
           </div>
@@ -119,7 +163,9 @@ const Footer = () => {
             <ul className="space-y-3 mb-6">
               <li className="flex items-start gap-2 text-sm text-navy-foreground/80">
                 <Mail className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                <span>support@emaildelivery.com</span>
+                <a href="mailto:support@inboxexpertise.com" className="hover:text-primary transition-colors">
+                  support@inboxexpertise.com
+                </a>
               </li>
               <li className="flex items-start gap-2 text-sm text-navy-foreground/80">
                 <Phone className="w-4 h-4 mt-0.5 flex-shrink-0" />
@@ -127,7 +173,7 @@ const Footer = () => {
               </li>
               <li className="flex items-start gap-2 text-sm text-navy-foreground/80">
                 <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                <span>123 Business St, Suite 100<br />New York, NY 10001</span>
+                <span>4517 Washington Ave.<br />Manchester, Kentucky 39495</span>
               </li>
             </ul>
 
@@ -152,18 +198,15 @@ const Footer = () => {
         <div className="border-t border-navy-foreground/10 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-navy-foreground/60">
-              © 2024 Email Deliverability Solutions. All rights reserved.
+              © {new Date().getFullYear()} InboxExpertise. All rights reserved.
             </p>
             <div className="flex gap-6">
-              <a href="#" className="text-sm text-navy-foreground/60 hover:text-primary transition-colors">
+              <Link to="/privacy" className="text-sm text-navy-foreground/60 hover:text-primary transition-colors">
                 Privacy Policy
-              </a>
-              <a href="#" className="text-sm text-navy-foreground/60 hover:text-primary transition-colors">
+              </Link>
+              <Link to="/terms" className="text-sm text-navy-foreground/60 hover:text-primary transition-colors">
                 Terms of Service
-              </a>
-              <a href="#" className="text-sm text-navy-foreground/60 hover:text-primary transition-colors">
-                Cookie Policy
-              </a>
+              </Link>
             </div>
           </div>
         </div>

@@ -126,6 +126,7 @@ const DeliverabilitySection = () => {
 
             <Button
               size="lg"
+              onClick={() => window.open('https://calendly.com/alex-inboxexpertise/30min', '_blank')}
               className="rounded-full px-10 py-6 text-base font-semibold bg-primary text-primary-foreground hover:bg-primary/90"
             >
               Get Started Now

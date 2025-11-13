@@ -47,11 +47,12 @@ const FAQSection = () => {
       <div className="container mx-auto px-6 lg:px-16 max-w-4xl">
         {/* Header */}
         <div className="text-center mb-12">
-          <Badge className="bg-primary/10 text-primary hover:bg-primary/10 px-5 py-2 text-base font-semibold rounded-full mb-6">
+          <Badge className="bg-primary/10 text-primary hover:bg-primary/10 px-5 py-2 text-base font-semibold rounded-full mb-6 flex items-center gap-2 w-fit mx-auto">
+            <span className="w-2 h-2 bg-primary rounded-full"></span>
             FAQ
           </Badge>
-          
-          <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
+
+          <h2 className="text-4xl lg:text-5xl font-bold text-black mb-4">
             Frequently Asked Questions
           </h2>
           

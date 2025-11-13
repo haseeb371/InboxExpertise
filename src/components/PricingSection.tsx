@@ -21,10 +21,10 @@ const pricingTiers: PricingTier[] = [
   {
     name: "Google Basic",
     description: "Perfect for small operations with advanced needs",
-    basePrice: 2.2,
-    priceReduction: 0.02,
-    minUsers: 100,
-    maxUsers: 500,
+    basePrice: 1.7,
+    priceReduction: 0,
+    minUsers: 5,
+    maxUsers: 1000,
     features: [
       "Domain & Email Setup",
       "SPF, DKIM, DMARC",
@@ -33,12 +33,12 @@ const pricingTiers: PricingTier[] = [
     ]
   },
   {
-    name: "Google Business",
+    name: "Google Reseller",
     description: "Perfect for larger organizations with advanced needs",
-    basePrice: 1.75,
-    priceReduction: 0.015,
-    minUsers: 100,
-    maxUsers: 500,
+    basePrice: 1.7,
+    priceReduction: 0,
+    minUsers: 5,
+    maxUsers: 1000,
     features: [
       "Domain & Email Setup",
       "SPF, DKIM, DMARC",
@@ -51,10 +51,10 @@ const pricingTiers: PricingTier[] = [
   {
     name: "MS Business",
     description: "Perfect for small operations with advanced needs",
-    basePrice: 99,
-    priceReduction: 0.8,
-    minUsers: 1,
-    maxUsers: 100,
+    basePrice: 4,
+    priceReduction: 0,
+    minUsers: 5,
+    maxUsers: 1000,
     features: [
       "Domain & Email Setup",
       "SPF, DKIM, DMARC",
@@ -67,15 +67,29 @@ const pricingTiers: PricingTier[] = [
 const PricingSection = () => {
   const [billingCycle, setBillingCycle] = useState<"monthly" | "yearly">("monthly");
   const [userCounts, setUserCounts] = useState<{ [key: string]: number }>({
-    "Google Basic": 100,
-    "Google Business": 100,
-    "MS Business": 1
+    "Google Basic": 5,
+    "Google Reseller": 5,
+    "MS Business": 5
   });
 
   const calculatePrice = (tier: PricingTier, userCount: number) => {
-    const reduction = (userCount - tier.minUsers) * tier.priceReduction;
-    const price = Math.max(tier.basePrice - reduction, tier.basePrice * 0.5); // Minimum 50% of base price
-    return price.toFixed(2);
+    // Google Workspace pricing tiers
+    if (tier.name.includes("Google")) {
+      if (userCount <= 400) {
+        return "1.70";
+      } else if (userCount <= 800) {
+        return "1.40";
+      } else {
+        return "1.00";
+      }
+    }
+
+    // MS Business flat rate
+    if (tier.name === "MS Business") {
+      return "4.00";
+    }
+
+    return tier.basePrice.toFixed(2);
   };
 
   const handleUserCountChange = (tierName: string, value: number[]) => {
@@ -182,7 +196,7 @@ const PricingSection = () => {
                   <div className="mb-6 p-4 rounded-lg bg-muted/50">
                     <div className="flex justify-between items-center mb-3">
                       <span className="text-sm font-medium text-foreground">
-                        {tier.name === "MS Business" ? "Domain" : "Users"}
+                        Users
                       </span>
                       <span className="text-lg font-bold text-primary">
                         {userCount}
@@ -193,7 +207,7 @@ const PricingSection = () => {
                       onValueChange={(value) => handleUserCountChange(tier.name, value)}
                       min={tier.minUsers}
                       max={tier.maxUsers}
-                      step={tier.name === "MS Business" ? 1 : 10}
+                      step={userCount <= 100 ? 5 : 10}
                       className="w-full cursor-pointer"
                     />
                     <div className="flex justify-between text-xs mt-3 text-muted-foreground">
@@ -221,6 +235,7 @@ const PricingSection = () => {
 
                   {/* CTA Button */}
                   <Button
+                    onClick={() => window.open('https://calendly.com/alex-inboxexpertise/30min', '_blank')}
                     className="w-full rounded-lg py-6 font-semibold bg-primary text-primary-foreground hover:bg-primary/90"
                   >
                     Get Started

@@ -162,7 +162,10 @@ const DeliverabilityChart = () => {
           </motion.p>
 
           {/* Get Started Button */}
-          <button className="bg-primary text-white px-8 py-2 rounded-full text-xs font-semibold hover:scale-105 transition-all">
+          <button
+            onClick={() => window.open('https://calendly.com/alex-inboxexpertise/30min', '_blank')}
+            className="bg-primary text-white px-8 py-2 rounded-full text-xs font-semibold hover:scale-105 transition-all"
+          >
             Get Started
           </button>
         </div>
@@ -196,7 +199,10 @@ const DeliverabilityChart = () => {
             ))}
 
             {/* Get Started Button */}
-            <button className="bg-primary text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-primary/90 transition-all w-full mt-4">
+            <button
+              onClick={() => window.open('https://calendly.com/alex-inboxexpertise/30min', '_blank')}
+              className="bg-primary text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-primary/90 transition-all w-full mt-4"
+            >
               Get Started
             </button>
           </nav>

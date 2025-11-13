@@ -44,6 +44,7 @@ const HeroSection = () => {
           <div className="flex flex-wrap items-center justify-center gap-4 pt-4 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
             <Button
               size="lg"
+              onClick={() => window.open('https://calendly.com/alex-inboxexpertise/30min', '_blank')}
               className="rounded-full px-12 py-6 text-base font-semibold hover:scale-105 transition-all bg-primary text-primary-foreground hover:bg-primary/90"
             >
               Get Started

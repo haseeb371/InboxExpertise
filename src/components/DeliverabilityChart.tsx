@@ -57,7 +57,6 @@ const DeliverabilityChart = () => {
     "Services",
     "Pricing",
     "About Us",
-    "Blogs",
     "Contact Us"
   ];
 
@@ -76,18 +75,27 @@ const DeliverabilityChart = () => {
         </div>
 
         {/* Navigation Bar */}
-        <div className="absolute top-10 left-0 right-0 px-6 flex items-center justify-between z-40">
-          {/* Logo */}
-          <img
-            src="/logo.png"
-            alt="Logo"
-            className="h-5 w-auto"
-          />
-          {/* Burger Menu */}
-          <Menu
-            className="w-6 h-6 text-white cursor-pointer"
-            onClick={() => setIsSidebarOpen(true)}
-          />
+        <div className="absolute top-10 left-4 right-4 z-40">
+          <div className="bg-white/95 backdrop-blur-xl rounded-full shadow-lg px-4 py-2.5 flex items-center justify-between">
+            {/* Logo */}
+            <img
+              src="/logo.png"
+              alt="Logo"
+              className="h-5 w-auto"
+            />
+            {/* Menu Toggle Icon */}
+            {isSidebarOpen ? (
+              <X
+                className="w-5 h-5 text-navy cursor-pointer hover:text-primary transition-colors"
+                onClick={() => setIsSidebarOpen(false)}
+              />
+            ) : (
+              <Menu
+                className="w-5 h-5 text-navy cursor-pointer hover:text-primary transition-colors"
+                onClick={() => setIsSidebarOpen(true)}
+              />
+            )}
+          </div>
         </div>
 
         {/* Hero Content */}
@@ -170,50 +178,32 @@ const DeliverabilityChart = () => {
           </button>
         </div>
 
-        {/* Sidebar */}
-        <div
-          className={`absolute rounded-l-xl top-7 right-0 bottom-0 w-[50%] bg-white shadow-2xl z-50 transition-transform duration-300 ${
-            isSidebarOpen ? 'translate-x-0' : 'translate-x-full'
-          }`}
-        >
-          {/* Sidebar Header */}
-          <div className="flex items-center justify-between p-4 border-b">
-            <span className="text-navy font-bold text-sm">Menu</span>
-            <X
-              className="w-5 h-5 text-navy cursor-pointer"
-              onClick={() => setIsSidebarOpen(false)}
-            />
-          </div>
-
-          {/* Menu Items */}
-          <nav className="p-4">
-            {menuItems.map((item, index) => (
-              <a
-                key={index}
-                href="#"
-                className="block py-3 px-2 text-navy text-sm font-medium hover:bg-primary/5 rounded-lg transition-colors"
-                onClick={() => setIsSidebarOpen(false)}
-              >
-                {item}
-              </a>
-            ))}
-
-            {/* Get Started Button */}
-            <button
-              onClick={() => window.open('https://calendly.com/alex-inboxexpertise/30min', '_blank')}
-              className="bg-primary text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-primary/90 transition-all w-full mt-4"
-            >
-              Get Started
-            </button>
-          </nav>
-        </div>
-
-        {/* Overlay */}
+        {/* Mobile Menu Dropdown */}
         {isSidebarOpen && (
-          <div
-            className="absolute inset-0 bg-black/30 z-40"
-            onClick={() => setIsSidebarOpen(false)}
-          />
+          <div className="absolute top-24 left-4 right-4 z-50 bg-white rounded-3xl shadow-xl overflow-hidden">
+            <div className="flex flex-col py-2">
+              {menuItems.map((item, index) => (
+                <button
+                  key={index}
+                  className="px-4 py-2.5 text-left text-navy text-xs font-medium hover:text-primary hover:bg-primary/5 transition-colors"
+                  onClick={() => setIsSidebarOpen(false)}
+                >
+                  {item}
+                </button>
+              ))}
+              <div className="px-4 py-2">
+                <button
+                  onClick={() => {
+                    window.open('https://calendly.com/alex-inboxexpertise/30min', '_blank');
+                    setIsSidebarOpen(false);
+                  }}
+                  className="w-full bg-primary text-white px-4 py-2 rounded-full text-xs font-semibold hover:bg-primary/90 transition-all"
+                >
+                  Get Started
+                </button>
+              </div>
+            </div>
+          </div>
         )}
 
         {/* Status Bar - on top of screen */}

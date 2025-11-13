@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Menu, X } from "lucide-react";
 
 const Navigation = () => {
   const navigate = useNavigate();
@@ -8,6 +9,7 @@ const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOverWhiteSection, setIsOverWhiteSection] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navItems = [
     { label: "Home", path: "/" },
@@ -87,6 +89,8 @@ const Navigation = () => {
   }, [location.pathname]);
 
   const handleNavClick = (item: any) => {
+    setIsMobileMenuOpen(false); // Close mobile menu on click
+
     if (item.scrollTo) {
       // If not on home page, navigate to home first
       if (location.pathname !== '/') {
@@ -136,7 +140,7 @@ const Navigation = () => {
             />
           </Link>
 
-          {/* Navigation Menu - Hidden on mobile */}
+          {/* Navigation Menu - Desktop */}
           <div className="hidden lg:flex items-center gap-10">
             {navItems.map((item) => (
               <button
@@ -153,16 +157,57 @@ const Navigation = () => {
             ))}
           </div>
 
-          {/* Action Button */}
-          <div className="flex items-center">
+          {/* Action Button & Mobile Menu Toggle */}
+          <div className="flex items-center gap-4">
             <Button
               onClick={() => window.open('https://calendly.com/alex-inboxexpertise/30min', '_blank')}
-              className="rounded-full px-8 font-semibold hover:scale-105 transition-all bg-primary text-primary-foreground hover:bg-primary/90"
+              className="hidden sm:flex rounded-full px-8 font-semibold hover:scale-105 transition-all bg-primary text-primary-foreground hover:bg-primary/90"
             >
               Get Started
             </Button>
+
+            {/* Mobile Menu Toggle */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="lg:hidden p-2 text-navy hover:text-primary transition-colors"
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
           </div>
         </div>
+
+        {/* Mobile Menu */}
+        {isMobileMenuOpen && (
+          <div className="lg:hidden absolute top-full left-0 right-0 mt-2 mx-6 bg-white rounded-3xl shadow-xl overflow-hidden">
+            <div className="flex flex-col py-4">
+              {navItems.map((item) => (
+                <button
+                  key={item.label}
+                  onClick={() => handleNavClick(item)}
+                  className={`px-6 py-3 text-left font-medium transition-colors ${
+                    isActive(item)
+                      ? "text-primary bg-primary/5"
+                      : "text-navy hover:text-primary hover:bg-primary/5"
+                  }`}
+                >
+                  {item.label}
+                </button>
+              ))}
+              <div className="px-6 py-3">
+                <Button
+                  onClick={() => {
+                    window.open('https://calendly.com/alex-inboxexpertise/30min', '_blank');
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="w-full rounded-full font-semibold bg-primary text-primary-foreground hover:bg-primary/90"
+                >
+                  Get Started
+                </Button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </nav>
   );

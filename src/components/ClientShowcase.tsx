@@ -7,19 +7,19 @@ const ClientShowcase = () => {
       name: "Instantly",
       logoSrc: "/instantly-logo.svg",
       textColor: "text-foreground",
-      height: "h-10",
+      height: "h-12 md:h-14",
     },
     {
       name: "Smartlead.ai",
       logoSrc: "/smartlead-logo.svg",
       textColor: "text-foreground",
-      height: "h-10",
+      height: "h-12 md:h-14",
     },
     {
       name: "MAILREACH",
       logoSrc: "/mailreach-logo.svg",
       textColor: "text-foreground",
-      height: "h-6",
+      height: "h-8 md:h-10",
     },
     {
       name: "lemlist",
@@ -64,9 +64,9 @@ const ClientShowcase = () => {
           <div ref={containerRef} className="flex">
             {/* Render logos twice for seamless loop */}
             {[...logos, ...logos].map((logo, index) => (
-              <div key={index} className="min-w-[25%] flex items-center justify-center p-4">
+              <div key={index} className="min-w-[33%] md:min-w-[25%] flex items-center justify-center px-6 md:px-8 py-4">
                 {logo.logoSrc ? (
-                  <div>
+                  <div className="flex items-center justify-center">
                     <img
                       src={logo.logoSrc}
                       alt={logo.name}
@@ -74,13 +74,13 @@ const ClientShowcase = () => {
                     />
                   </div>
                 ) : (
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-2 whitespace-nowrap">
                     <img
                       src={logo.iconSrc}
                       alt={`${logo.name} icon`}
-                      className="w-12 h-12 object-contain"
+                      className="w-10 h-10 md:w-12 md:h-12 object-contain flex-shrink-0"
                     />
-                    <span className={`text-2xl font-bold ${logo.textColor}`}>
+                    <span className={`text-xl md:text-2xl font-bold ${logo.textColor}`}>
                       {logo.name}
                     </span>
                   </div>

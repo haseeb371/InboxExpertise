@@ -108,7 +108,7 @@ const FeaturesSection = () => {
               key={index}
               className="border border-border transition-all duration-300 hover:-translate-y-1 bg-card"
             >
-              <CardContent className="p-10 text-center">
+              <CardContent className="p-6 sm:p-8 lg:p-10 text-center">
                 {feature.icon}
                 <h3 className="text-xl font-bold text-black mb-4">
                   {feature.title}

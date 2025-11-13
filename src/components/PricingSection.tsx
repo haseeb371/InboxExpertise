@@ -126,10 +126,10 @@ const PricingSection = () => {
           </p>
 
           {/* Monthly/Yearly Toggle */}
-          <div className="inline-flex items-center gap-3 bg-white/20 backdrop-blur-sm rounded-full p-1">
+          <div className="inline-flex items-center gap-2 sm:gap-3 bg-white/20 backdrop-blur-sm rounded-full p-1">
             <button
               onClick={() => setBillingCycle("monthly")}
-              className={`px-8 py-2 rounded-full text-sm font-semibold transition-all ${
+              className={`px-4 sm:px-8 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all ${
                 billingCycle === "monthly"
                   ? "bg-white text-primary shadow-sm"
                   : "text-white hover:text-white/80"
@@ -139,7 +139,7 @@ const PricingSection = () => {
             </button>
             <button
               onClick={() => setBillingCycle("yearly")}
-              className={`px-8 py-2 rounded-full text-sm font-semibold transition-all ${
+              className={`px-4 sm:px-8 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all ${
                 billingCycle === "yearly"
                   ? "bg-white text-primary shadow-sm"
                   : "text-white hover:text-white/80"
@@ -212,9 +212,9 @@ const PricingSection = () => {
                     />
                     <div className="flex justify-between text-xs mt-3 text-muted-foreground">
                       <span>{tier.minUsers}</span>
-                      <span>{tier.minUsers + Math.floor((tier.maxUsers - tier.minUsers) / 4)}</span>
-                      <span>{tier.minUsers + Math.floor((tier.maxUsers - tier.minUsers) / 2)}</span>
-                      <span>{tier.minUsers + Math.floor((tier.maxUsers - tier.minUsers) * 3 / 4)}</span>
+                      <span className="hidden sm:inline">{tier.minUsers + Math.floor((tier.maxUsers - tier.minUsers) / 4)}</span>
+                      <span className="hidden md:inline">{tier.minUsers + Math.floor((tier.maxUsers - tier.minUsers) / 2)}</span>
+                      <span className="hidden sm:inline">{tier.minUsers + Math.floor((tier.maxUsers - tier.minUsers) * 3 / 4)}</span>
                       <span>{tier.maxUsers}</span>
                     </div>
                   </div>

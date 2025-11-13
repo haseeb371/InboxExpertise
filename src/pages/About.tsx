@@ -154,7 +154,7 @@ const About = () => {
           >
             <motion.div variants={itemVariants}>
               <Card className="border-border bg-card h-full hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
-                <CardContent className="p-8">
+                <CardContent className="p-4 sm:p-6 lg:p-8">
                   <motion.h2
                     className="text-xl font-bold text-black mb-3"
                     initial={{ opacity: 0, x: -20 }}
@@ -179,7 +179,7 @@ const About = () => {
 
             <motion.div variants={itemVariants}>
               <Card className="border-border bg-card h-full hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
-                <CardContent className="p-8">
+                <CardContent className="p-4 sm:p-6 lg:p-8">
                   <motion.h2
                     className="text-xl font-bold text-black mb-3"
                     initial={{ opacity: 0, x: -20 }}
@@ -204,7 +204,7 @@ const About = () => {
 
             <motion.div variants={itemVariants}>
               <Card className="border-border bg-card h-full hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
-                <CardContent className="p-8">
+                <CardContent className="p-4 sm:p-6 lg:p-8">
                   <motion.h2
                     className="text-xl font-bold text-black mb-3"
                     initial={{ opacity: 0, x: -20 }}
@@ -229,7 +229,7 @@ const About = () => {
 
             <motion.div variants={itemVariants}>
               <Card className="border-border bg-card h-full hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
-                <CardContent className="p-8">
+                <CardContent className="p-4 sm:p-6 lg:p-8">
                   <motion.h2
                     className="text-xl font-bold text-black mb-3"
                     initial={{ opacity: 0, x: -20 }}
@@ -254,7 +254,7 @@ const About = () => {
 
             <motion.div variants={itemVariants}>
               <Card className="border-border bg-card h-full hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
-                <CardContent className="p-8">
+                <CardContent className="p-4 sm:p-6 lg:p-8">
                   <motion.h2
                     className="text-xl font-bold text-black mb-3"
                     initial={{ opacity: 0, x: -20 }}
@@ -279,7 +279,7 @@ const About = () => {
 
             <motion.div variants={itemVariants}>
               <Card className="border-border bg-card h-full hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
-                <CardContent className="p-8">
+                <CardContent className="p-4 sm:p-6 lg:p-8">
                   <motion.h2
                     className="text-xl font-bold text-black mb-3"
                     initial={{ opacity: 0, x: -20 }}
@@ -318,7 +318,7 @@ const About = () => {
             {stats.map((stat, index) => (
               <motion.div key={index} variants={itemVariants}>
                 <Card className="border-border bg-card text-center hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
-                  <CardContent className="p-8">
+                  <CardContent className="p-4 sm:p-6 lg:p-8">
                     <motion.h3
                       className="text-4xl lg:text-5xl font-bold text-primary mb-2"
                       initial={{ opacity: 0, scale: 0.5 }}
@@ -433,6 +433,18 @@ const About = () => {
           </motion.div>
 
           <div className="relative" ref={timelineRef}>
+            {/* Mobile Timeline Line */}
+            <div className="absolute left-6 top-0 w-0.5 h-full lg:hidden bg-primary/20">
+              <motion.div
+                className="absolute inset-0 bg-primary"
+                style={{
+                  scaleY: scrollYProgress,
+                  transformOrigin: 'top'
+                }}
+              />
+            </div>
+
+            {/* Desktop Timeline Line */}
             <div className="absolute left-1/2 -translate-x-1/2 w-1 h-full hidden lg:block">
               {/* Timeline Line Background */}
               <div className="absolute inset-0 bg-primary/20" />
@@ -448,7 +460,7 @@ const About = () => {
             </div>
 
             <motion.div
-              className="space-y-12"
+              className="space-y-8 lg:space-y-12"
               variants={containerVariants}
               initial="hidden"
               whileInView="visible"
@@ -458,20 +470,26 @@ const About = () => {
                 <motion.div
                   key={index}
                   variants={itemVariants}
-                  className={`flex items-center gap-8 ${
+                  className={`flex items-start gap-6 lg:gap-8 ${
                     index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
                   }`}
                 >
+                  {/* Mobile Timeline Dot */}
+                  <div className="lg:hidden flex w-8 h-8 rounded-full bg-primary flex-shrink-0 items-center justify-center relative z-10 mt-1">
+                    <div className="w-4 h-4 rounded-full bg-white" />
+                  </div>
+
                   <div className={`flex-1 ${index % 2 === 0 ? 'lg:text-right' : 'lg:text-left'}`}>
                     <Card className="border-border bg-card">
-                      <CardContent className="p-6">
-                        <div className="text-2xl font-bold text-primary mb-2">{item.year}</div>
-                        <h3 className="text-xl font-bold text-black mb-2">{item.title}</h3>
-                        <p className="text-muted-foreground">{item.description}</p>
+                      <CardContent className="p-4 sm:p-6">
+                        <div className="text-xl sm:text-2xl font-bold text-primary mb-2">{item.year}</div>
+                        <h3 className="text-lg sm:text-xl font-bold text-black mb-2">{item.title}</h3>
+                        <p className="text-sm sm:text-base text-muted-foreground">{item.description}</p>
                       </CardContent>
                     </Card>
                   </div>
 
+                  {/* Desktop Timeline Dot */}
                   <div className="hidden lg:flex w-12 h-12 rounded-full bg-primary flex-shrink-0 items-center justify-center relative z-10">
                     <div className="w-6 h-6 rounded-full bg-white" />
                   </div>

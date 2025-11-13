@@ -126,7 +126,7 @@ const StatsSection = () => {
                     : "bg-card border-border"
                 }`}
               >
-                <CardContent className="p-8 text-center">
+                <CardContent className="p-6 sm:p-8 text-center">
                   <AnimatedNumber value={stat.value} highlight={stat.highlight} />
                   <p
                     className={`text-sm lg:text-base leading-relaxed ${

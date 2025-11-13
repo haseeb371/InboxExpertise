@@ -111,15 +111,15 @@ const TestimonialsSection = () => {
         {/* Testimonials Carousel */}
         <div className="w-full max-w-screen-xl mx-auto overflow-hidden relative">
           {/* Left fade overlay */}
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+          <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
           {/* Right fade overlay */}
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
           <div ref={containerRef} className="flex gap-6">
             {/* Render testimonials twice for seamless loop */}
             {[...testimonials, ...testimonials].map((testimonial, index) => (
-              <Card key={index} className="flex-shrink-0 w-96 bg-card border-border">
-                <CardContent className="p-6">
+              <Card key={index} className="flex-shrink-0 w-80 sm:w-96 bg-card border-border">
+                <CardContent className="p-4 sm:p-6">
                   {/* Review Text */}
                   <div className="mb-6">
                     {/* Star Rating */}

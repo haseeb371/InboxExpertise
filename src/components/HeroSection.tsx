@@ -29,13 +29,13 @@ const HeroSection = () => {
         </div>
 
         {/* Main Content */}
-        <div className="max-w-5xl mx-auto text-center space-y-4 mb-12">
+        <div className="max-w-5xl mx-auto text-center space-y-4 md:mb-12">
           <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight tracking-tight animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
             Ensure Your Email Hits
             <br />
             the Right Inbox
           </h1>
-          
+
           <p className="text-base lg:text-lg text-white/90 max-w-xl mx-auto leading-relaxed animate-fade-in-up px-4" style={{ animationDelay: "0.2s" }}>
             We help you configure smart authentication, fix deliverability issues,
             and boost sender reputation for higher open and reply rates.
@@ -52,36 +52,23 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Visual Elements - Desktop */}
+        {/* Visual Elements - Progressive Display */}
         <div className="hidden md:block relative h-[280px] w-full">
           <div className="relative h-full w-full flex items-end justify-center overflow-visible">
-            {/* Trusted Users Card - Left */}
-            <div className="absolute left-[2%] lg:left-[8%] top-[60%] z-10 animate-float animate-fade-in-up" style={{ animationDelay: "0.5s" }}>
-              <TrustedUsersCard />
-            </div>
-
-            {/* Center - Deliverability Chart */}
+            {/* Deliverability Chart - Center (Shows first on md+) */}
             <div className="z-20 animate-fade-in-up absolute top-0" style={{ animationDelay: "0.4s" }}>
               <DeliverabilityChart />
             </div>
 
-            {/* Health Score Card - Right */}
-            <div className="absolute right-0 top-[35%] z-10 animate-float hidden lg:block" style={{ animationDelay: "0.6s", animationDuration: "5s" }}>
+            {/* Trusted Users Card - Left (Hides first on smaller screens, shows on lg+) */}
+            <div className="absolute left-[2%] lg:left-[8%] top-[60%] z-10 animate-float animate-fade-in-up hidden lg:block" style={{ animationDelay: "0.5s" }}>
+              <TrustedUsersCard />
+            </div>
+
+            {/* Health Score Card - Right (Shows last on xl+) */}
+            <div className="absolute right-0 top-[35%] z-10 animate-float hidden xl:block" style={{ animationDelay: "0.6s", animationDuration: "5s" }}>
               <HealthScoreCard />
             </div>
-          </div>
-        </div>
-
-        {/* Visual Elements - Mobile */}
-        <div className="md:hidden flex flex-col items-center gap-6 w-full max-w-sm mx-auto">
-          {/* Trusted Users Card */}
-          <div className="animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
-            <TrustedUsersCard />
-          </div>
-
-          {/* Health Score Card */}
-          <div className="animate-fade-in-up" style={{ animationDelay: "0.5s" }}>
-            <HealthScoreCard />
           </div>
         </div>
       </div>

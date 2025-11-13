@@ -137,7 +137,7 @@ const Contact = () => {
               transition={{ duration: 0.6 }}
             >
               <Card className="border-border bg-card h-full">
-                <CardContent className="p-8">
+                <CardContent className="p-4 sm:p-6 lg:p-8">
                   <h2 className="text-3xl font-bold text-black mb-2">Send Us a Message</h2>
                   <p className="text-muted-foreground mb-6">
                     Fill out the form below and we'll get back to you as soon as possible
@@ -249,7 +249,7 @@ const Contact = () => {
 
               {/* Why Contact Us */}
               <Card className="border-border bg-gradient-to-br from-primary/5 to-primary/10 flex-1">
-                <CardContent className="p-8 h-full flex flex-col justify-center">
+                <CardContent className="p-4 sm:p-6 lg:p-8 h-full flex flex-col justify-center">
                   <h3 className="text-2xl font-bold text-black mb-4">Why Contact Us?</h3>
                   <ul className="space-y-3">
                     {[

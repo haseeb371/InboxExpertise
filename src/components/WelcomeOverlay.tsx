@@ -108,7 +108,7 @@ const WelcomeOverlay = () => {
                       Welcomeback to InboxExpertise!
                     </h1>
                     <p className="text-xl sm:text-2xl text-white/95 max-w-2xl mx-auto leading-relaxed drop-shadow-lg font-light">
-                      Your trusted partner for email deliverability excellence. We've redesigned our platform to deliver the best experience.
+                      We've completely reimagined our platform with a stunning new design, enhanced features, and powerful analytics to deliver the ultimate email deliverability experience.
                     </p>
                   </motion.div>
                 </div>

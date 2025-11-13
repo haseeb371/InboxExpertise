@@ -3,12 +3,15 @@ import { Battery, Signal, Wifi, Menu, X } from "lucide-react";
 import { InteractiveGridPattern } from "@/components/ui/interactive-grid-pattern";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const DeliverabilityChart = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [currentTime, setCurrentTime] = useState("");
   const [batteryLevel, setBatteryLevel] = useState(100);
   const [isCharging, setIsCharging] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const updateTime = () => {
@@ -53,12 +56,39 @@ const DeliverabilityChart = () => {
   }, []);
 
   const menuItems = [
-    "Home",
-    "Services",
-    "Pricing",
-    "About Us",
-    "Contact Us"
+    { label: "Home", path: "/", scrollTo: null },
+    { label: "Services", path: "/", scrollTo: "features" },
+    { label: "Pricing", path: "/", scrollTo: "pricing" },
+    { label: "About Us", path: "/about", scrollTo: null },
+    { label: "Contact Us", path: "/contact", scrollTo: null }
   ];
+
+  const handleNavigation = (item: typeof menuItems[0]) => {
+    setIsSidebarOpen(false);
+
+    if (item.scrollTo) {
+      // Navigate to home if not already there
+      if (location.pathname !== "/") {
+        navigate("/");
+        // Wait for navigation to complete before scrolling
+        setTimeout(() => {
+          const element = document.getElementById(item.scrollTo!);
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+          }
+        }, 100);
+      } else {
+        // Already on home page, just scroll
+        const element = document.getElementById(item.scrollTo);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    } else {
+      // Navigate to the specified path
+      navigate(item.path);
+    }
+  };
 
   return (
     <div className="relative w-[340px] h-[680px] bg-black rounded-[48px] p-1 overflow-hidden">
@@ -186,9 +216,9 @@ const DeliverabilityChart = () => {
                 <button
                   key={index}
                   className="px-4 py-2.5 text-left text-navy text-xs font-medium hover:text-primary hover:bg-primary/5 transition-colors"
-                  onClick={() => setIsSidebarOpen(false)}
+                  onClick={() => handleNavigation(item)}
                 >
-                  {item}
+                  {item.label}
                 </button>
               ))}
               <div className="px-4 py-2">

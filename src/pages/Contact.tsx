@@ -21,7 +21,7 @@ const Contact = () => {
     {
       icon: <Phone className="w-6 h-6" />,
       title: "Call Us",
-      details: "+1 (555) 123-4567",
+      details: "+1 506-498-0949",
       subtitle: "Mon-Fri from 9am to 6pm",
       link: "tel:+15551234567"
     },
@@ -186,7 +186,7 @@ const Contact = () => {
                       <Input
                         id="phone"
                         type="tel"
-                        placeholder="+1 (555) 123-4567"
+                        placeholder="+1 506-498-0949"
                         className="w-full"
                       />
                     </div>

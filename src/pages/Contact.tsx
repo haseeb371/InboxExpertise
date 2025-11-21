@@ -14,9 +14,9 @@ const Contact = () => {
     {
       icon: <Mail className="w-6 h-6" />,
       title: "Email Us",
-      details: "support@inboxexpertise.com",
+      details: "alex@inboxexpertise.com",
       subtitle: "We'll respond within 24 hours",
-      link: "mailto:support@inboxexpertise.com"
+      link: "mailto:alex@inboxexpertise.com"
     },
     {
       icon: <Phone className="w-6 h-6" />,

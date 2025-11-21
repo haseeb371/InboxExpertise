@@ -149,7 +149,7 @@ const Navigation = () => {
                 className={`font-medium transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary after:transition-transform after:origin-left ${
                   isActive(item)
                     ? "text-primary after:scale-x-100"
-                    : "text-navy hover:text-primary after:scale-x-0 hover:after:scale-x-100"
+                    : "text-black hover:text-primary after:scale-x-0 hover:after:scale-x-100"
                 }`}
               >
                 {item.label}
@@ -188,7 +188,7 @@ const Navigation = () => {
                   className={`px-6 py-3 text-left font-medium transition-colors ${
                     isActive(item)
                       ? "text-primary bg-primary/5"
-                      : "text-navy hover:text-primary hover:bg-primary/5"
+                      : "text-black hover:text-primary hover:bg-primary/5"
                   }`}
                 >
                   {item.label}

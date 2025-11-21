@@ -52,7 +52,7 @@ const DeliverabilitySection = () => {
             </Badge>
 
             <motion.h2
-              className="text-4xl lg:text-5xl font-bold text-foreground leading-tight"
+              className="text-4xl lg:text-5xl font-bold text-black leading-tight"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.3 }}

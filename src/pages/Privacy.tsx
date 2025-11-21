@@ -223,8 +223,8 @@ const Privacy = () => {
                           </div>
                           <div>
                             <p className="text-sm font-semibold text-primary mb-1">Email</p>
-                            <a href="mailto:support@inboxexpertise.com" className="text-foreground hover:text-primary transition-colors">
-                              support@inboxexpertise.com
+                            <a href="mailto:alex@inboxexpertise.com" className="text-foreground hover:text-primary transition-colors">
+                              alex@inboxexpertise.com
                             </a>
                           </div>
                           <div>

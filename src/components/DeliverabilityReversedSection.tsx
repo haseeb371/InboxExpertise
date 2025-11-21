@@ -39,7 +39,7 @@ const DeliverabilityReversedSection = () => {
             </Badge>
 
             <motion.h2
-              className="text-4xl lg:text-5xl font-bold text-foreground leading-tight"
+              className="text-4xl lg:text-5xl font-bold text-black leading-tight"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

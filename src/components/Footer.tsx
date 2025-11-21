@@ -163,8 +163,8 @@ const Footer = () => {
             <ul className="space-y-3 mb-6">
               <li className="flex items-start gap-2 text-sm text-navy-foreground/80">
                 <Mail className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                <a href="mailto:support@inboxexpertise.com" className="hover:text-primary transition-colors">
-                  support@inboxexpertise.com
+                <a href="mailto:alex@inboxexpertise.com" className="hover:text-primary transition-colors">
+                  alex@inboxexpertise.com
                 </a>
               </li>
               <li className="flex items-start gap-2 text-sm text-navy-foreground/80">

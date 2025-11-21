@@ -15,27 +15,15 @@ interface PricingTier {
   maxUsers: number;
   features: string[];
   highlighted?: boolean;
+  isDomainBased?: boolean; // For flat-rate domain pricing instead of per-user
+  customDomainPrice?: number; // Additional price for custom domain option
 }
 
 const pricingTiers: PricingTier[] = [
   {
-    name: "Google Basic",
-    description: "Perfect for small operations with advanced needs",
-    basePrice: 1.7,
-    priceReduction: 0,
-    minUsers: 5,
-    maxUsers: 1000,
-    features: [
-      "Domain & Email Setup",
-      "SPF, DKIM, DMARC",
-      "US Sending Servers",
-      "100% Secure Access"
-    ]
-  },
-  {
     name: "Google Reseller",
     description: "Perfect for larger organizations with advanced needs",
-    basePrice: 1.7,
+    basePrice: 3.5,
     priceReduction: 0,
     minUsers: 5,
     maxUsers: 1000,
@@ -45,13 +33,30 @@ const pricingTiers: PricingTier[] = [
       "US Sending Servers",
       "100% Secure Access",
       "Enhanced Security"
-    ],
-    highlighted: true
+    ]
+  },
+  {
+    name: "Microsoft Partner",
+    description: "50 accounts per domain with fast automated setup",
+    basePrice: 3,
+    priceReduction: 0,
+    minUsers: 1,
+    maxUsers: 50,
+    isDomainBased: true,
+    customDomainPrice: 12,
+    features: [
+      "50 Microsoft Partner accounts per domain",
+      "200 emails per day per account",
+      "Partial Automated Setup",
+      "24 Hour Turnaround",
+      "SPF / DKIM / Strict DMARC",
+      "Premium 1-on-1 Support"
+    ]
   },
   {
     name: "MS Business",
     description: "Perfect for small operations with advanced needs",
-    basePrice: 4,
+    basePrice: 3,
     priceReduction: 0,
     minUsers: 5,
     maxUsers: 1000,
@@ -67,26 +72,31 @@ const pricingTiers: PricingTier[] = [
 const PricingSection = () => {
   const [billingCycle, setBillingCycle] = useState<"monthly" | "yearly">("monthly");
   const [userCounts, setUserCounts] = useState<{ [key: string]: number }>({
-    "Google Basic": 5,
     "Google Reseller": 5,
+    "Microsoft Partner": 1,
     "MS Business": 5
   });
 
   const calculatePrice = (tier: PricingTier, userCount: number) => {
-    // Google Workspace pricing tiers
-    if (tier.name.includes("Google")) {
+    // Google Reseller pricing tiers
+    if (tier.name === "Google Reseller") {
       if (userCount <= 400) {
-        return "1.70";
-      } else if (userCount <= 800) {
-        return "1.40";
+        return "3.50";
+      } else if (userCount < 1000) {
+        return "2.90";
       } else {
-        return "1.00";
+        return "2.75";
       }
+    }
+
+    // Microsoft Partner flat rate per domain
+    if (tier.name === "Microsoft Partner") {
+      return "10.00";
     }
 
     // MS Business flat rate
     if (tier.name === "MS Business") {
-      return "4.00";
+      return "3.00";
     }
 
     return tier.basePrice.toFixed(2);
@@ -160,11 +170,7 @@ const PricingSection = () => {
             return (
               <Card
                 key={tier.name}
-                className={`relative overflow-hidden transition-all duration-300 ${
-                  tier.highlighted
-                    ? "border-2 border-white bg-card scale-105"
-                    : "border-border bg-card"
-                }`}
+                className="relative overflow-hidden transition-all duration-300 border-border bg-card"
               >
                 <CardContent className="p-8">
                   {/* Plan Name & Description */}
@@ -184,22 +190,24 @@ const PricingSection = () => {
                         ${billingCycle === "monthly" ? price : yearlyPrice}
                       </span>
                       <span className="text-muted-foreground">
-                        /{billingCycle === "monthly" ? "month" : "year"}
+                        /{billingCycle === "monthly" ? "month" : "year"}{tier.isDomainBased ? "/domain" : "/user"}
                       </span>
                     </div>
-                    <p className="text-xs mt-1 text-muted-foreground">
-                      per user per {billingCycle === "monthly" ? "month" : "year"}
-                    </p>
+                    {tier.isDomainBased && tier.customDomainPrice && (
+                      <p className="text-xs mt-1 text-primary font-semibold">
+                        +${tier.customDomainPrice} for custom domain
+                      </p>
+                    )}
                   </div>
 
                   {/* User Count Slider */}
                   <div className="mb-6 p-4 rounded-lg bg-muted/50">
                     <div className="flex justify-between items-center mb-3">
                       <span className="text-sm font-medium text-foreground">
-                        Users
+                        {tier.isDomainBased ? "Domains" : "Users"}
                       </span>
                       <span className="text-lg font-bold text-primary">
-                        {userCount}
+                        {userCount >= tier.maxUsers && !tier.isDomainBased ? `${userCount}+` : userCount}
                       </span>
                     </div>
                     <Slider
@@ -226,7 +234,7 @@ const PricingSection = () => {
                         <div className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center mt-0.5 bg-primary/10">
                           <Check className="w-3 h-3 text-primary" />
                         </div>
-                        <span className="text-sm leading-relaxed text-foreground">
+                        <span className="text-sm leading-relaxed text-black">
                           {feature}
                         </span>
                       </div>

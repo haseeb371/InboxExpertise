@@ -15,6 +15,7 @@ const Navigation = () => {
     { label: "Home", path: "/" },
     { label: "Services", scrollTo: "features" },
     { label: "Pricing", scrollTo: "pricing" },
+    { label: "Blog", path: "/blog" },
     { label: "About Us", path: "/about" },
     { label: "Contact Us", path: "/contact" }
   ];
